@@ -1,15 +1,33 @@
 import { motion, AnimatePresence } from "motion/react"
-import { useState } from "react"
+import { useState, useMemo } from "react"
 
-const colors = ["#a855f7", "#ec4899", "#f97316", "#22c55e", "#3b82f6"]
+const colors = ["#a855f7", "#ec4899", "#f97316", "#22c55e", "#3b82f6", "#eab308", "#06b6d4"]
+
+interface Particle {
+  id: number
+  x: number
+  y: number
+  rotation: number
+  scale: number
+  color: string
+  shape: "circle" | "square" | "star"
+}
 
 export function Confetti() {
-  const [particles, setParticles] = useState<number[]>([])
+  const [particles, setParticles] = useState<Particle[]>([])
 
   const burst = () => {
-    const ids = Array.from({ length: 12 }, (_, i) => Date.now() + i)
-    setParticles(ids)
-    setTimeout(() => setParticles([]), 1000)
+    const newParticles: Particle[] = Array.from({ length: 30 }, (_, i) => ({
+      id: Date.now() + i,
+      x: (Math.random() - 0.5) * 200,
+      y: -100 - Math.random() * 80,
+      rotation: Math.random() * 720 - 360,
+      scale: 0.5 + Math.random() * 0.8,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      shape: ["circle", "square", "star"][Math.floor(Math.random() * 3)] as Particle["shape"]
+    }))
+    setParticles(newParticles)
+    setTimeout(() => setParticles([]), 1200)
   }
 
   return (
@@ -18,19 +36,20 @@ export function Confetti() {
         🎉 Celebrate
       </button>
       <AnimatePresence>
-        {particles.map((id, i) => (
+        {particles.map((p) => (
           <motion.div
-            key={id}
-            initial={{ x: 0, y: 0, scale: 1, opacity: 1 }}
+            key={p.id}
+            initial={{ x: 0, y: 0, scale: 1, opacity: 1, rotate: 0 }}
             animate={{
-              x: (Math.random() - 0.5) * 100,
-              y: -60 - Math.random() * 40,
-              scale: 0,
-              opacity: 0
+              x: p.x,
+              y: p.y,
+              scale: p.scale,
+              opacity: 0,
+              rotate: p.rotation
             }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            style={{ backgroundColor: colors[i % colors.length] }}
-            className="absolute top-0 left-1/2 w-2 h-2 rounded-full"
+            transition={{ duration: 1, ease: "easeOut" }}
+            style={{ backgroundColor: p.color }}
+            className={`absolute top-0 left-1/2 w-3 h-3 ${p.shape === "circle" ? "rounded-full" : p.shape === "square" ? "rounded-sm" : "rotate-45"}`}
           />
         ))}
       </AnimatePresence>

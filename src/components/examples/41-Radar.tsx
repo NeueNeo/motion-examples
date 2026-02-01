@@ -9,7 +9,7 @@ export function Radar() {
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-0"
+        className="absolute inset-0 rounded-full overflow-hidden"
         style={{ background: "conic-gradient(from 0deg, transparent 0deg, rgba(34,197,94,0.5) 30deg, transparent 60deg)" }}
       />
       <div className="absolute inset-0 m-auto w-2 h-2 rounded-full bg-green-500" />
