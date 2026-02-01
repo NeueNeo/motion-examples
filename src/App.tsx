@@ -185,6 +185,7 @@ import { SuccessButton } from "@/components/examples/142-SuccessButton"
 import { NeonButton } from "@/components/examples/143-NeonButton"
 import { SlideButton } from "@/components/examples/144-SlideButton"
 import { OutlineButton } from "@/components/examples/145-OutlineButton"
+import { ClaimButton } from "@/components/examples/146-ClaimButton"
 
 interface Example {
   title: string
@@ -244,6 +245,7 @@ const sections: Section[] = [
       { title: "Slide Button", description: "Color slides in", component: SlideButton },
       { title: "Outline Button", description: "Border highlight", component: OutlineButton },
       { title: "Dissolve Out", description: "Particle dissolve", component: DissolveOut },
+      { title: "Claim Button", description: "Confetti on claim", component: ClaimButton },
     ]
   },
   {
