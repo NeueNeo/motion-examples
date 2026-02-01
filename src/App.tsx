@@ -1,5 +1,7 @@
+import { useRef, useState, useEffect } from "react"
 import { ExampleCard } from "@/components/ExampleCard"
 import { LoopOnMount } from "@/components/LoopOnMount"
+import { Sidebar } from "@/components/Sidebar"
 
 // Import all example source files as raw text
 const sources = import.meta.glob('./components/examples/*.tsx', { query: '?raw', import: 'default', eager: true }) as Record<string, string>
@@ -145,6 +147,44 @@ import { HackingText } from "@/components/examples/93-HackingText"
 import { WarningFlash } from "@/components/examples/94-WarningFlash"
 import { EKGLine } from "@/components/examples/95-EKGLine"
 import { GlitchImage } from "@/components/examples/102-GlitchImage"
+import { VHSTracking } from "@/components/examples/106-VHSTracking"
+import { FluorescentFlicker } from "@/components/examples/107-FluorescentFlicker"
+import { CorridorRecede } from "@/components/examples/108-CorridorRecede"
+import { Wormhole } from "@/components/examples/109-Wormhole"
+import { DNAHelix } from "@/components/examples/110-DNAHelix"
+import { SystemDiagnostic } from "@/components/examples/111-SystemDiagnostic"
+import { GlitchBlock } from "@/components/examples/112-GlitchBlock"
+import { VinylSpin } from "@/components/examples/114-VinylSpin"
+import { DissolveOut } from "@/components/examples/116-DissolveOut"
+import { LateNightClock } from "@/components/examples/117-LateNightClock"
+import { NoSignal } from "@/components/examples/118-NoSignal"
+import { MorphLoader } from "@/components/examples/119-MorphLoader"
+import { HoloBadge } from "@/components/examples/120-HoloBadge"
+import { StatusBadge } from "@/components/examples/121-StatusBadge"
+import { NewBadge } from "@/components/examples/122-NewBadge"
+import { ProBadge } from "@/components/examples/123-ProBadge"
+import { LiveBadge } from "@/components/examples/124-LiveBadge"
+import { BetaBadge } from "@/components/examples/125-BetaBadge"
+import { VerifiedBadge } from "@/components/examples/126-VerifiedBadge"
+import { CountBadge } from "@/components/examples/127-CountBadge"
+import { TypingBadge } from "@/components/examples/128-TypingBadge"
+import { SecureBadge } from "@/components/examples/129-SecureBadge"
+import { AiBadge } from "@/components/examples/130-AiBadge"
+import { PremiumBadge } from "@/components/examples/131-PremiumBadge"
+import { OfflineBadge } from "@/components/examples/132-OfflineBadge"
+import { UpdateBadge } from "@/components/examples/133-UpdateBadge"
+import { AdminBadge } from "@/components/examples/134-AdminBadge"
+import { RecordingBadge } from "@/components/examples/135-RecordingBadge"
+import { SplitButton } from "@/components/examples/136-SplitButton"
+import { GhostButton } from "@/components/examples/137-GhostButton"
+import { PillButton } from "@/components/examples/138-PillButton"
+import { GlowButton } from "@/components/examples/139-GlowButton"
+import { LoadingButton } from "@/components/examples/140-LoadingButton"
+import { IconButton } from "@/components/examples/141-IconButton"
+import { SuccessButton } from "@/components/examples/142-SuccessButton"
+import { NeonButton } from "@/components/examples/143-NeonButton"
+import { SlideButton } from "@/components/examples/144-SlideButton"
+import { OutlineButton } from "@/components/examples/145-OutlineButton"
 
 interface Example {
   title: string
@@ -193,6 +233,17 @@ const sections: Section[] = [
       { title: "Border Button", description: "Drawing border on hover", component: BorderButton },
       { title: "Fill Button", description: "Color fill on hover", component: FillButton },
       { title: "Gradient Button", description: "Animated gradient bg", component: GradientButton },
+      { title: "Split Button", description: "Primary + dropdown", component: SplitButton },
+      { title: "Ghost Button", description: "Subtle hover fill", component: GhostButton },
+      { title: "Pill Button", description: "Toggle selection", component: PillButton },
+      { title: "Glow Button", description: "Cyan glow effect", component: GlowButton },
+      { title: "Loading Button", description: "Dots while loading", component: LoadingButton },
+      { title: "Icon Button", description: "Heart like toggle", component: IconButton },
+      { title: "Success Button", description: "Confirm → Done", component: SuccessButton },
+      { title: "Neon Button", description: "Glowing border", component: NeonButton },
+      { title: "Slide Button", description: "Color slides in", component: SlideButton },
+      { title: "Outline Button", description: "Border highlight", component: OutlineButton },
+      { title: "Dissolve Out", description: "Particle dissolve", component: DissolveOut },
     ]
   },
   {
@@ -219,6 +270,9 @@ const sections: Section[] = [
       { title: "Pulse", description: "Subtle pulsing scale", component: Pulse },
       { title: "Circular Progress", description: "SVG ring progress", component: CircularProgress },
       { title: "Infinity Loader", description: "Figure-8 motion", component: InfinityLoader },
+      { title: "DNA Helix", description: "Rotating double helix", component: DNAHelix },
+      { title: "Wormhole", description: "Swirling tunnel rings", component: Wormhole },
+      { title: "Morph Loader", description: "Shape-shifting spinner", component: MorphLoader },
     ]
   },
   {
@@ -280,6 +334,7 @@ const sections: Section[] = [
       { title: "Liquid Metal", description: "T-1000 morphing blob", component: LiquidMetal },
       { title: "Portal", description: "Swirling vortex rings", component: Portal },
       { title: "Audio Bars", description: "Fake audio visualizer", component: AudioBars },
+      { title: "Vinyl Spin", description: "Click to play/pause", component: VinylSpin },
     ]
   },
   {
@@ -317,45 +372,137 @@ const sections: Section[] = [
       { title: "Warning Flash", description: "Critical alert flash", component: WarningFlash },
       { title: "EKG Line", description: "Heartbeat monitor", component: EKGLine },
       { title: "Glitch Image", description: "RGB slice distortion", component: GlitchImage },
+      { title: "VHS Tracking", description: "Tape tracking distortion", component: VHSTracking },
+      { title: "System Diagnostic", description: "Boot sequence log", component: SystemDiagnostic },
+      { title: "Glitch Block", description: "Sliced data corruption", component: GlitchBlock },
+      { title: "No Signal", description: "Lost TV signal bars", component: NoSignal },
+    ]
+  },
+  {
+    title: "🌃 Liminal",
+    examples: [
+      { title: "Fluorescent Flicker", description: "Flickering exit sign", component: FluorescentFlicker },
+      { title: "Corridor Recede", description: "Infinite hallway depth", component: CorridorRecede },
+      { title: "Late Night Clock", description: "3am digital clock", component: LateNightClock },
+    ]
+  },
+  {
+    title: "🏷️ Badges",
+    examples: [
+      { title: "Holo Badge", description: "Holographic verified", component: HoloBadge },
+      { title: "Status Badge", description: "Online status pulse", component: StatusBadge },
+      { title: "New Badge", description: "Shiny new indicator", component: NewBadge },
+      { title: "Pro Badge", description: "Premium gold badge", component: ProBadge },
+      { title: "Live Badge", description: "Live streaming dot", component: LiveBadge },
+      { title: "Beta Badge", description: "Beta feature glow", component: BetaBadge },
+      { title: "Verified Badge", description: "Checkmark draw", component: VerifiedBadge },
+      { title: "Count Badge", description: "Animated counter", component: CountBadge },
+      { title: "Typing Badge", description: "Someone is typing", component: TypingBadge },
+      { title: "Secure Badge", description: "Security indicator", component: SecureBadge },
+      { title: "AI Badge", description: "Spinning gradient border", component: AiBadge },
+      { title: "Premium Badge", description: "Diamond sparkle", component: PremiumBadge },
+      { title: "Offline Badge", description: "Dimmed status", component: OfflineBadge },
+      { title: "Update Badge", description: "Spinning refresh", component: UpdateBadge },
+      { title: "Admin Badge", description: "Shield authority", component: AdminBadge },
+      { title: "Recording Badge", description: "REC with timer", component: RecordingBadge },
     ]
   },
 ]
 
 export default function App() {
   const totalExamples = sections.reduce((sum, s) => sum + s.examples.length, 0)
+  const [activeSection, setActiveSection] = useState<string | null>(null)
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+  const sectionRefs = useRef<Record<string, HTMLElement | null>>({})
+
+  const sidebarSections = sections.map(s => ({
+    title: s.title,
+    count: s.examples.length
+  }))
+
+  // Track scroll position to highlight active section
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const title = Object.entries(sectionRefs.current).find(
+              ([, el]) => el === entry.target
+            )?.[0]
+            if (title) setActiveSection(title)
+          }
+        })
+      },
+      { rootMargin: "-20% 0px -70% 0px" }
+    )
+
+    Object.values(sectionRefs.current).forEach((el) => {
+      if (el) observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  const handleSectionClick = (title: string) => {
+    setActiveSection(title)
+    const el = sectionRefs.current[title]
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" })
+    }
+  }
 
   return (
-    <div className="min-h-screen p-8">
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold text-white mb-2">Motion Examples</h1>
-        <p className="text-zinc-400">{totalExamples} interactive Framer Motion examples. Hover, click, and explore.</p>
-      </header>
+    <div className="min-h-screen">
+      <Sidebar
+        sections={sidebarSections}
+        activeSection={activeSection}
+        onSectionClick={handleSectionClick}
+        collapsed={sidebarCollapsed}
+        onCollapsedChange={setSidebarCollapsed}
+      />
       
-      {sections.map((section) => (
-        <section key={section.title} className="mb-10">
-          <h2 className="text-xl font-semibold text-zinc-200 mb-4 border-b border-zinc-800 pb-2">
-            {section.title}
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-            {section.examples.map((example, i) => (
-              <ExampleCard
-                key={i}
-                title={example.title}
-                description={example.description}
-                source={getSource(example.component)}
-              >
-                {example.loop ? (
-                  <LoopOnMount delay={5000}>
+      {/* Main content */}
+      <main 
+        className={`p-8 pt-16 lg:pt-8 transition-all duration-300 ${
+          sidebarCollapsed ? 'lg:pl-[92px]' : 'lg:pl-[272px]'
+        }`}
+      >
+        <header className="mb-8">
+          <h1 className="text-3xl font-bold text-white mb-2">Motion Examples</h1>
+          <p className="text-zinc-400">{totalExamples} interactive Framer Motion examples. Hover, click, and explore.</p>
+        </header>
+        
+        {sections.map((section) => (
+          <section
+            key={section.title}
+            ref={(el) => { sectionRefs.current[section.title] = el }}
+            id={section.title.replace(/\s+/g, '-').toLowerCase()}
+            className="mb-10 scroll-mt-8"
+          >
+            <h2 className="text-xl font-semibold text-zinc-200 mb-4 border-b border-zinc-800 pb-2">
+              {section.title}
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
+              {section.examples.map((example, i) => (
+                <ExampleCard
+                  key={i}
+                  title={example.title}
+                  description={example.description}
+                  source={getSource(example.component)}
+                >
+                  {example.loop ? (
+                    <LoopOnMount delay={5000}>
+                      <example.component />
+                    </LoopOnMount>
+                  ) : (
                     <example.component />
-                  </LoopOnMount>
-                ) : (
-                  <example.component />
-                )}
-              </ExampleCard>
-            ))}
-          </div>
-        </section>
-      ))}
+                  )}
+                </ExampleCard>
+              ))}
+            </div>
+          </section>
+        ))}
+      </main>
     </div>
   )
 }
