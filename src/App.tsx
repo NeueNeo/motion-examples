@@ -20,6 +20,21 @@ import { CountUp } from "@/components/examples/17-CountUp"
 import { Accordion } from "@/components/examples/18-Accordion"
 import { GlowOnHover } from "@/components/examples/19-GlowOnHover"
 import { PathDraw } from "@/components/examples/20-PathDraw"
+import { GradientShift } from "@/components/examples/21-GradientShift"
+import { Typewriter } from "@/components/examples/22-Typewriter"
+import { FloatingElement } from "@/components/examples/23-FloatingElement"
+import { SkeletonLoader } from "@/components/examples/24-SkeletonLoader"
+import { NotificationBadge } from "@/components/examples/25-NotificationBadge"
+import { Ripple } from "@/components/examples/26-Ripple"
+import { ProgressBar } from "@/components/examples/27-ProgressBar"
+import { TiltCard } from "@/components/examples/28-TiltCard"
+import { ElasticButton } from "@/components/examples/29-ElasticButton"
+import { BlurIn } from "@/components/examples/30-BlurIn"
+import { WaveText } from "@/components/examples/31-WaveText"
+import { MagneticButton } from "@/components/examples/32-MagneticButton"
+import { Heartbeat } from "@/components/examples/33-Heartbeat"
+import { TabIndicator } from "@/components/examples/34-TabIndicator"
+import { Orbit } from "@/components/examples/35-Orbit"
 
 const examples = [
   { title: "Fade In", description: "Initial opacity animation on mount", component: FadeIn, loop: true },
@@ -42,6 +57,21 @@ const examples = [
   { title: "Accordion", description: "AnimatePresence height animation", component: Accordion, loop: false },
   { title: "Glow on Hover", description: "Box shadow glow effect", component: GlowOnHover, loop: false },
   { title: "Path Draw", description: "SVG path drawing animation", component: PathDraw, loop: false },
+  { title: "Gradient Shift", description: "Animated color gradient", component: GradientShift, loop: false },
+  { title: "Typewriter", description: "Typing text effect", component: Typewriter, loop: false },
+  { title: "Floating Element", description: "Gentle floating motion", component: FloatingElement, loop: false },
+  { title: "Skeleton Loader", description: "Loading placeholder shimmer", component: SkeletonLoader, loop: false },
+  { title: "Notification Badge", description: "Pop-in badge counter", component: NotificationBadge, loop: false },
+  { title: "Ripple", description: "Click ripple effect", component: Ripple, loop: false },
+  { title: "Progress Bar", description: "Animated progress fill", component: ProgressBar, loop: false },
+  { title: "3D Tilt Card", description: "Mouse-follow tilt effect", component: TiltCard, loop: false },
+  { title: "Elastic Button", description: "Bouncy spring button", component: ElasticButton, loop: false },
+  { title: "Blur In", description: "Blur to focus reveal", component: BlurIn, loop: true },
+  { title: "Wave Text", description: "Wavy text animation", component: WaveText, loop: false },
+  { title: "Magnetic Button", description: "Cursor-following button", component: MagneticButton, loop: false },
+  { title: "Heartbeat", description: "Pulsing heart animation", component: Heartbeat, loop: false },
+  { title: "Tab Indicator", description: "Shared layoutId tabs", component: TabIndicator, loop: false },
+  { title: "Orbit", description: "Planetary orbit animation", component: Orbit, loop: false },
 ]
 
 export default function App() {
@@ -49,7 +79,7 @@ export default function App() {
     <div className="min-h-screen p-8">
       <header className="mb-8">
         <h1 className="text-3xl font-bold text-white mb-2">Motion Examples</h1>
-        <p className="text-zinc-400">20 interactive Framer Motion examples. Hover, click, and explore.</p>
+        <p className="text-zinc-400">35 interactive Framer Motion examples. Hover, click, and explore.</p>
       </header>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
