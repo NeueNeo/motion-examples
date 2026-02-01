@@ -35,6 +35,21 @@ import { MagneticButton } from "@/components/examples/32-MagneticButton"
 import { Heartbeat } from "@/components/examples/33-Heartbeat"
 import { TabIndicator } from "@/components/examples/34-TabIndicator"
 import { Orbit } from "@/components/examples/35-Orbit"
+import { FlipCounter } from "@/components/examples/36-FlipCounter"
+import { LoadingDots } from "@/components/examples/37-LoadingDots"
+import { Marquee } from "@/components/examples/38-Marquee"
+import { RevealText } from "@/components/examples/39-RevealText"
+import { SqueezeButton } from "@/components/examples/40-SqueezeButton"
+import { Radar } from "@/components/examples/41-Radar"
+import { StackCards } from "@/components/examples/42-StackCards"
+import { FlipWords } from "@/components/examples/43-FlipWords"
+import { DrawerSlide } from "@/components/examples/44-DrawerSlide"
+import { PingDot } from "@/components/examples/45-PingDot"
+import { LiquidButton } from "@/components/examples/46-LiquidButton"
+import { IconMorph } from "@/components/examples/47-IconMorph"
+import { Spotlight } from "@/components/examples/48-Spotlight"
+import { TextScramble } from "@/components/examples/49-TextScramble"
+import { Confetti } from "@/components/examples/50-Confetti"
 
 const examples = [
   { title: "Fade In", description: "Initial opacity animation on mount", component: FadeIn, loop: true },
@@ -72,6 +87,21 @@ const examples = [
   { title: "Heartbeat", description: "Pulsing heart animation", component: Heartbeat, loop: false },
   { title: "Tab Indicator", description: "Shared layoutId tabs", component: TabIndicator, loop: false },
   { title: "Orbit", description: "Planetary orbit animation", component: Orbit, loop: false },
+  { title: "Flip Counter", description: "Airport-style counter", component: FlipCounter, loop: false },
+  { title: "Loading Dots", description: "Bouncing dot loader", component: LoadingDots, loop: false },
+  { title: "Marquee", description: "Scrolling text ticker", component: Marquee, loop: false },
+  { title: "Reveal Text", description: "Hover to reveal text", component: RevealText, loop: false },
+  { title: "Squeeze Button", description: "Squish effect on press", component: SqueezeButton, loop: false },
+  { title: "Radar", description: "Scanning radar animation", component: Radar, loop: false },
+  { title: "Stack Cards", description: "Click to cycle cards", component: StackCards, loop: false },
+  { title: "Flip Words", description: "Rotating word display", component: FlipWords, loop: false },
+  { title: "Drawer Slide", description: "Slide-down drawer", component: DrawerSlide, loop: false },
+  { title: "Ping Dot", description: "Notification ping effect", component: PingDot, loop: false },
+  { title: "Liquid Button", description: "Morphing border radius", component: LiquidButton, loop: false },
+  { title: "Icon Morph", description: "Play/pause icon toggle", component: IconMorph, loop: false },
+  { title: "Spotlight", description: "Cursor spotlight effect", component: Spotlight, loop: false },
+  { title: "Text Scramble", description: "Decoding text effect", component: TextScramble, loop: false },
+  { title: "Confetti", description: "Celebration particle burst", component: Confetti, loop: false },
 ]
 
 export default function App() {
@@ -79,7 +109,7 @@ export default function App() {
     <div className="min-h-screen p-8">
       <header className="mb-8">
         <h1 className="text-3xl font-bold text-white mb-2">Motion Examples</h1>
-        <p className="text-zinc-400">35 interactive Framer Motion examples. Hover, click, and explore.</p>
+        <p className="text-zinc-400">50 interactive Framer Motion examples. Hover, click, and explore.</p>
       </header>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
