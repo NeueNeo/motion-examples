@@ -1,73 +1,81 @@
-# React + TypeScript + Vite
+# Motion Examples v2
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interactive Framer Motion / Motion examples gallery. 100+ components demonstrating animations, gestures, and transitions.
 
-Currently, two official plugins are available:
+## Optimizations (v2)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This version includes several optimizations based on current best practices:
 
-## React Compiler
+### 1. Correct Package Usage
+- Uses `motion` package (not deprecated `framer-motion`)
+- Imports from `motion/react` (current standard)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 2. LazyMotion Provider
+- Wrapped app in `LazyMotion` with `domMax` features
+- Enables tree-shaking for unused features
+- `strict` mode enforces best practices
 
-## Expanding the ESLint configuration
+### 3. Modern Stack
+- **React 19** - Latest features including Compiler support
+- **Tailwind CSS v4** - Oxide engine, CSS-first config
+- **Vite 7** - Fast builds, native ESM
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 4. Bundle Considerations
+For production apps with simpler needs:
+```tsx
+// Use domAnimation instead of domMax (~15kb vs ~25kb)
+import { LazyMotion, domAnimation } from "motion/react"
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+// Use m instead of motion for smaller components
+import { m } from "motion/react"
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Stack
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- React 19.2
+- Motion 12.29
+- Tailwind CSS 4.1
+- Vite 7.3
+- TypeScript 5.9
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Development
+
+```bash
+npm install
+npm run dev     # http://localhost:5181
+npm run build
 ```
+
+## Structure
+
+```
+src/
+├── components/
+│   ├── examples/       # 146 animation examples
+│   ├── ui/             # Shared UI components
+│   ├── ExampleCard.tsx # Card wrapper with source view
+│   ├── MotionProvider.tsx # LazyMotion wrapper
+│   └── Sidebar.tsx     # Navigation
+├── App.tsx             # Main layout & sections
+└── main.tsx            # Entry point
+```
+
+## Categories
+
+- 🔤 Text Effects (13)
+- 🔘 Buttons (24)
+- 🃏 Cards (9)
+- ⏳ Loaders & Progress (10)
+- ✨ Entrances (7)
+- 👆 Hover Effects (5)
+- 🎛️ Interactive (12)
+- 🔷 Shapes & Graphics (18)
+- 🔢 Counters (3)
+- 🔔 Notifications (4)
+- 🌃 Cyberpunk (19)
+- 🌃 Liminal (3)
+- 🏷️ Badges (16)
+
+---
+
+Built by NeueBot 🤖
